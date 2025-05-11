@@ -1,79 +1,40 @@
+
 package Modelo;
 
 public class Usuario {
+    private String cedula;
+    private String nombre;
+    private String apellido;
+    private String correo;
+    private String telefono;
+    private String password;
+    private String tipoUsuario;
 
-	private String cedula;
-	private String correo_institucional;
-	private String nombre;
-	private String apellido;
-	private String telefono;
-	private String clave;
-	private String tipo_usuario;
-        ////////////////////////////////////
-	public String get_cedula(){
-            return cedula;
-	}
+    public Usuario(String cedula, String nombre, String apellido, 
+                  String correo, String telefono, String password, 
+                  String tipoUsuario) {
+        this.cedula = cedula;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.correo = correo;
+        this.telefono = telefono;
+        this.password = password;
+        this.tipoUsuario = tipoUsuario;
+    }
 
-	public void set_cedula(String c) {
-            cedula = c;
-	}
-
-	public String get_correo_institucional() {
-		return correo_institucional;
-	}
-
-	public void set_correo_institucional(String c) {
-            correo_institucional=c;
-	}
-
-	public String get_nombre() {
-		return nombre;
-	}
-
-	public void set_nombre(String n) {
-            nombre = n;
-	}
-
-	public String get_apellido() {
-		return apellido;
-	}
-
-	public void set_apellido(String a) {
-            apellido=a;
-	}
-
-	public String get_telefono() {
-		return telefono;
-	}
-
-	public void set_telefono(String t) {
-            telefono = t;
-	}
-
-	public String get_clave() {
-		return clave;
-	}
-
-	public void set_clave(String c) {
-            clave=c;
-	}
-
-	public String get_tipo_usuario() {
-		return tipo_usuario;
-	}
-
-	public void set_tipo_usuario(String t) {
-            tipo_usuario = t;
-	}
-
-	public Usuario(String cedula, String nombre, String apellido, String correo, String telefono, String rol, String password) {
-            set_cedula(cedula);
-            set_nombre(nombre);
-            set_apellido(apellido);
-            set_correo_institucional(correo);
-            set_telefono(telefono);
-            set_tipo_usuario(rol);
-            set_clave(password);
-	}
-
+    // Getters y Setters
+    public String getCedula() { return cedula; }
+    public void setCedula(String cedula) { this.cedula = cedula; }
+    public String getNombre() { return nombre; }
+    public void setNombre(String nombre) { this.nombre = nombre; }
+    public String getApellido() { return apellido; }
+    public void setApellido(String apellido) { this.apellido = apellido; }
+    public String getCorreo() { return correo; }
+    public void setCorreo(String correo) { this.correo = correo; }
+    public String getTelefono() { return telefono; }
+    public void setTelefono(String telefono) { this.telefono = telefono; }
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
+    public String getTipoUsuario() { return tipoUsuario; }
+    public void setTipoUsuario(String tipoUsuario) { this.tipoUsuario = tipoUsuario; }
 }

@@ -1,17 +1,12 @@
 package Vista;
 
-import jm.sistemasalas_jka.SistemaSalas_JKA;
 
-public class Ventana_principal {
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-	private SistemaSalas_JKA sistemaSalas;
+public class Ventana_principal extends JFrame {
 
-	private Ventana_registro ventana_registro;
-
-	private Ventana_ingreso ventana_ingreso;
-
-	public void run() {
-
-	}
-
+    
 }

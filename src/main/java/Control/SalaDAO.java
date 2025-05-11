@@ -1,47 +1,84 @@
 package Control;
 
-import Vista.Sub_gest_salas;
-import Database.ConexionOracle;
 import Modelo.Sala;
+import Modelo.Ubicacion;
+import Database.ConexionOracle;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SalaDAO {
+    private Connection connection;
 
-	private AplicacionDAO.Autenticar autenticar;
+    public SalaDAO() {
+        try {
+            connection = ConexionOracle.getConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
-	private Filtro_salas filtro_salas;
+    public List<Sala> obtenerTodasSalas() {
+        List<Sala> salas = new ArrayList<>();
+        String sql = "SELECT s.*, u.nombre_bloque, u.piso FROM sala s "
+                   + "LEFT JOIN ubicacion u ON s.id_ubicacion = u.id";
+        
+        try (Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            
+            while (rs.next()) {
+                Ubicacion ubicacion = new Ubicacion(
+                    rs.getString("id_ubicacion"),
+                    rs.getString("nombre_bloque"),
+                    rs.getInt("piso")
+                );
+                
+                Sala sala = new Sala(
+                    rs.getString("id"),
+                    rs.getString("nombre"),
+                    rs.getInt("maximo_equipos"),
+                    rs.getString("normas"),
+                    ubicacion
+                );
+                
+                salas.add(sala);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return salas;
+    }
+    ////////
+    public Sala obtenerSalaPorId(String idSala) {
+    String sql = "SELECT s.*, u.nombre_bloque, u.piso "
+               + "FROM sala s "
+               + "LEFT JOIN ubicacion u ON s.id_ubicacion = u.id "
+               + "WHERE s.id = ?";
+    
+    try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+        pstmt.setString(1, idSala);
+        ResultSet rs = pstmt.executeQuery();
 
-	private Sub_gest_salas sub_gest_salas;
+        if (rs.next()) {
+            // Construir objeto Ubicación
+            Ubicacion ubicacion = new Ubicacion(
+                rs.getString("id_ubicacion"),
+                rs.getString("nombre_bloque"),
+                rs.getInt("piso")
+            );
 
-	private ConexionOracle conexionOracle;
-
-	private HorarioDAO horarioDAO;
-
-	private Sala sala;
-
-	private UbicacionDAO ubicacionDAO;
-
-	public void agregar() {
-
-	}
-
-	public void modificar() {
-
-	}
-
-	public void eliminar() {
-
-	}
-
-	public char lista_salas() {
-		return 0;
-	}
-
-	public char filtro_salas() {
-		return 0;
-	}
-
-	public char lista_salas_disponibles() {
-		return 0;
-	}
-
+            // Construir y retornar objeto Sala
+            return new Sala(
+                rs.getString("id"),
+                rs.getString("nombre"),
+                rs.getInt("maximo_equipos"),
+                rs.getString("normas"),
+                ubicacion
+            );
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return null;
+}
 }

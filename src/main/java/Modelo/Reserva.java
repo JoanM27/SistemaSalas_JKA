@@ -1,23 +1,26 @@
+// Reserva.java
 package Modelo;
 
-public abstract class Reserva {//completa
-	private String id;
-	private String cedula_usuario;
+public abstract class Reserva {
+    private String id;
+    private Usuario usuario;
+    private Sala sala;
+    private String estado;
 
-	public String get_id() {
-            return id;
-	}
+    public Reserva(String id, Usuario usuario, Sala sala, String estado) {
+        this.id = id;
+        this.usuario = usuario;
+        this.sala = sala;
+        this.estado = estado;
+    }
 
-	public void set_id(String i) {
-            id=i;
-	}
-
-	public String get_cedula_usuario() {
-            return cedula_usuario;
-	}
-
-	public void set_cedula_usuario(String c) {
-            cedula_usuario=c;
-	}
-
+    // Getters y Setters
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
+    public Usuario getUsuario() { return usuario; }
+    public void setUsuario(Usuario usuario) { this.usuario = usuario; }
+    public Sala getSala() { return sala; }
+    public void setSala(Sala sala) { this.sala = sala; }
+    public String getEstado() { return estado; }
+    public void setEstado(String estado) { this.estado = estado; }
 }

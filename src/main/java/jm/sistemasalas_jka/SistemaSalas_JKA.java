@@ -1,11 +1,10 @@
-
-
 package jm.sistemasalas_jka;
 
 import Vista.Ventana_ingreso;
 import Vista.Ventana_registro;
 import Vista.Ventana_usuario;
 import Vista.Ventana_principal;
+import javax.swing.SwingUtilities;
 
 public class SistemaSalas_JKA {
 
@@ -20,7 +19,7 @@ public class SistemaSalas_JKA {
     /**
      *
      * @param args */
-    public static void main(String[] args){
+   public static void main(String[] args) {
         System.out.println("Funcionando");
     }
 }

@@ -1,44 +1,22 @@
+
 package Modelo;
 
-import Control.UbicacionDAO;
-
 public class Ubicacion {
+    private String id;
+    private String bloque;
+    private int piso;
 
-	private char id;
+    public Ubicacion(String id, String bloque, int piso) {
+        this.id = id;
+        this.bloque = bloque;
+        this.piso = piso;
+    }
 
-	private char nombre_bloque;
-
-	private int piso;
-
-	private UbicacionDAO ubicacionDAO;
-
-
-	public char get_id() {
-		return 0;
-	}
-
-	public void set_id(char i) {
-
-	}
-
-	public char get_nombre_bloque() {
-		return 0;
-	}
-
-	public void set_nombre_bloque(char n) {
-
-	}
-
-	public int get_piso() {
-		return 0;
-	}
-
-	public void set_piso(int p) {
-
-	}
-
-	public void Ubicacion() {
-
-	}
-
+    // Getters y Setters
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
+    public String getBloque() { return bloque; }
+    public void setBloque(String bloque) { this.bloque = bloque; }
+    public int getPiso() { return piso; }
+    public void setPiso(int piso) { this.piso = piso; }
 }

@@ -1,44 +1,21 @@
 package Modelo;
 
-import Control.Solicitud_adminDAO;
-
 public class Solicitud_admin {
+    private int id;
+    private Usuario usuario;
+    private String estado;
 
-	private char id;
+    public Solicitud_admin(int id, Usuario usuario, String estado) {
+        this.id = id;
+        this.usuario = usuario;
+        this.estado = estado;
+    }
 
-	private char estado;
-
-	private char id_solicitud_aplicacion;
-
-	private Solicitud_adminDAO solicitud_adminDAO;
-
-
-	public char get_id() {
-		return 0;
-	}
-
-	public void set_id(char i) {
-
-	}
-
-	public char get_estado() {
-		return 0;
-	}
-
-	public void set_estado(char e) {
-
-	}
-
-	public char get_id_solicitud_aplicacion() {
-		return 0;
-	}
-
-	public char set_id_solicitud_aplicacion(char i) {
-		return 0;
-	}
-
-	public void Solicitud_admin() {
-
-	}
-
+    // Getters y Setters
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
+    public Usuario getUsuario() { return usuario; }
+    public void setUsuario(Usuario usuario) { this.usuario = usuario; }
+    public String getEstado() { return estado; }
+    public void setEstado(String estado) { this.estado = estado; }
 }

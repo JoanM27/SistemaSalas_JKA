@@ -1,74 +1,35 @@
 package Modelo;
 
-import Control.Solicitud_aplicacionDAO;
-
 public class Solicitud_aplicacion {
+    private String id;
+    private Usuario usuario;
+    private Sala sala;
+    private String aplicacion;
+    private String estado;
+    private String detalles;
 
-	private char id;
+    public Solicitud_aplicacion(String id, Usuario usuario, Sala sala, 
+                                String aplicacion, String estado, 
+                               String detalles) {
+        this.id = id;
+        this.usuario = usuario;
+        this.sala = sala;
+        this.aplicacion = aplicacion;
+        this.estado = estado;
+        this.detalles = detalles;
+    }
 
-	private char id_sala;
-
-	private char cedula_usuario;
-
-	private char nombre;
-
-	private char detalles;
-
-	private char estado;
-
-	private Solicitud_aplicacionDAO solicitud_aplicacionDAO;
-
-
-	public char get_id() {
-		return 0;
-	}
-
-	public void set_id(char i) {
-
-	}
-
-	public char get_id_sala() {
-		return 0;
-	}
-
-	public void set_id_sala(char id) {
-
-	}
-
-	public char get_cedula_usuario() {
-		return 0;
-	}
-
-	public void set_cedula_usuario(char c) {
-
-	}
-
-	public char get_nombre() {
-		return 0;
-	}
-
-	public void set_nombre(char n) {
-
-	}
-
-	public char get_detalles() {
-		return 0;
-	}
-
-	public void set_detalles(char d) {
-
-	}
-
-	public char get_estado() {
-		return 0;
-	}
-
-	public void set_estado(char e) {
-
-	}
-
-	public void Solicitud_aplicacion() {
-
-	}
-
+    // Getters y Setters
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
+    public Usuario getUsuario() { return usuario; }
+    public void setUsuario(Usuario usuario) { this.usuario = usuario; }
+    public Sala getSala() { return sala; }
+    public void setSala(Sala sala) { this.sala = sala; }
+    public String getAplicacion() { return aplicacion; }
+    public void setAplicacion(String aplicacion) { this.aplicacion = aplicacion; }
+    public String getEstado() { return estado; }
+    public void setEstado(String estado) { this.estado = estado; }
+    public String getDetalles() { return detalles; }
+    public void setDetalles(String detalles) { this.detalles = detalles; }
 }
