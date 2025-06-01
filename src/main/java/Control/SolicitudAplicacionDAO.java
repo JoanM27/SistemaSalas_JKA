@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SolicitudAplicacionDAO {
-    /*
+    
     private Connection connection;
 
     public SolicitudAplicacionDAO() {
@@ -43,5 +43,4 @@ public class SolicitudAplicacionDAO {
         }
         return solicitudes;
     }
-*/
 }

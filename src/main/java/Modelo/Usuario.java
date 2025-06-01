@@ -21,6 +21,15 @@ public class Usuario {
         this.password = password;
         this.tipoUsuario = tipoUsuario;
     }
+    public Usuario(){
+        this.cedula = "";
+        this.nombre = "";
+        this.apellido = "";
+        this.correo = "";
+        this.telefono = "";
+        this.password = "";
+        this.tipoUsuario = "";
+    }
 
     // Getters y Setters
     public String getCedula() { return cedula; }

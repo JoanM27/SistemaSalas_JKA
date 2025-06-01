@@ -1,0 +1,119 @@
+@startuml
+abstract class Modelo.Reserva
+annotation java.lang.SuppressWarnings
+class Consola.Ventana_Principal
+class Control.AplicacionDAO
+class Control.Autenticar
+class Control.Filtro_salas
+class Control.HorarioDAO
+class Control.ReservarDAO
+class Control.SalaDAO
+class Control.SolicitudAplicacionDAO
+class Control.Solicitud_adminDAO
+class Control.Solicitud_aplicacionDAO
+class Control.UbicacionDAO
+class Control.UsuarioDAO
+class Database.ConexionOracle
+class Modelo.Aplicacion
+class Modelo.Reserva_dia
+class Modelo.Reserva_periodica
+class Modelo.Sala
+class Modelo.Solicitud_admin
+class Modelo.Solicitud_aplicacion
+class Modelo.Ubicacion
+class Modelo.Usuario
+class Vista.JFrame
+class Vista.Sub_buscar_sala
+class Vista.Sub_gest_app
+class Vista.Sub_gest_salas
+class Vista.Sub_reservar
+class Vista.Sub_soli_admin
+class Vista.Sub_soli_app
+class Vista.Sub_solicitud
+class Vista.VentanaPrincipal
+class Vista.Ventana_ingreso
+class Vista.Ventana_principal
+class Vista.Ventana_registro
+class Vista.Ventana_usuario
+class Vista.Vista_horario
+class java.awt.event.ActionEvent
+class java.awt.event.ActionListener
+class java.sql.Connection
+class java.sql.DriverManager
+class java.sql.SQLException
+class java.time.DayOfWeek
+class java.time.LocalDate
+class java.time.LocalTime
+class java.time.format.DateTimeFormatter
+class java.time.temporal.TemporalAdjusters
+class java.util.ArrayList
+class java.util.List
+class java.util.UUID
+class javax.swing.JFrame
+class jm.sistemasalas_jka.SistemaSalas_JKA
+Control.AplicacionDAO ..> Database.ConexionOracle
+Control.AplicacionDAO ..> Modelo.Aplicacion
+Control.AplicacionDAO ..> java.util.ArrayList
+Control.AplicacionDAO ..> java.util.List
+Control.Autenticar ..> Vista.Ventana_ingreso
+Control.Autenticar ..> Vista.Ventana_registro
+Control.Filtro_salas ..> Vista.Sub_buscar_sala
+Control.HorarioDAO ..> Database.ConexionOracle
+Control.HorarioDAO ..> Vista.Vista_horario
+Control.ReservarDAO ..> Modelo.Reserva
+Control.ReservarDAO ..> Database.ConexionOracle
+Control.ReservarDAO ..> Modelo.Reserva_dia
+Control.ReservarDAO ..> Modelo.Reserva_periodica
+Control.ReservarDAO ..> java.time.DayOfWeek
+Control.ReservarDAO ..> java.time.LocalDate
+Control.ReservarDAO ..> java.time.LocalTime
+Control.ReservarDAO ..> java.time.temporal.TemporalAdjusters
+Control.ReservarDAO ..> java.util.ArrayList
+Control.ReservarDAO ..> java.util.List
+Control.ReservarDAO ..> java.util.UUID
+Control.SalaDAO ..> Database.ConexionOracle
+Control.SalaDAO ..> Modelo.Sala
+Control.SalaDAO ..> Modelo.Ubicacion
+Control.SalaDAO ..> java.util.ArrayList
+Control.SalaDAO ..> java.util.List
+Control.SolicitudAplicacionDAO ..> Database.ConexionOracle
+Control.SolicitudAplicacionDAO ..> Modelo.Solicitud_aplicacion
+Control.SolicitudAplicacionDAO ..> java.util.ArrayList
+Control.SolicitudAplicacionDAO ..> java.util.List
+Control.Solicitud_adminDAO ..> Database.ConexionOracle
+Control.Solicitud_adminDAO ..> Modelo.Solicitud_admin
+Control.Solicitud_adminDAO ..> Vista.Sub_soli_admin
+Control.UbicacionDAO ..> Database.ConexionOracle
+Control.UbicacionDAO ..> Modelo.Ubicacion
+Control.UbicacionDAO ..> java.util.ArrayList
+Control.UbicacionDAO ..> java.util.List
+Control.UsuarioDAO ..> Database.ConexionOracle
+Control.UsuarioDAO ..> Modelo.Usuario
+Database.ConexionOracle ..> java.sql.Connection
+Database.ConexionOracle ..> java.sql.DriverManager
+Database.ConexionOracle ..> java.sql.SQLException
+Modelo.Reserva_dia --|> Modelo.Reserva
+Modelo.Reserva_periodica --|> Modelo.Reserva
+Modelo.Reserva_periodica ..> java.time.LocalTime
+Modelo.Reserva_periodica ..> java.time.format.DateTimeFormatter
+Vista.Sub_buscar_sala ..> Control.Filtro_salas
+Vista.Sub_gest_app ..> Control.AplicacionDAO
+Vista.Sub_gest_salas ..> Control.SalaDAO
+Vista.Sub_reservar ..> Control.ReservarDAO
+Vista.Sub_soli_admin ..> Control.Solicitud_adminDAO
+Vista.Sub_soli_app ..> Control.Solicitud_aplicacionDAO
+Vista.VentanaPrincipal ..> java.lang.SuppressWarnings
+Vista.VentanaPrincipal --|> javax.swing.JFrame
+Vista.Ventana_ingreso ..> Control.AplicacionDAO
+Vista.Ventana_ingreso ..> Control.Autenticar
+Vista.Ventana_ingreso ..> jm.sistemasalas_jka.SistemaSalas_JKA
+Vista.Ventana_principal --|> Vista.JFrame
+Vista.Ventana_principal ..> java.awt.event.ActionEvent
+Vista.Ventana_principal ..> java.awt.event.ActionListener
+Vista.Ventana_registro ..> Control.AplicacionDAO
+Vista.Ventana_registro ..> Control.Autenticar
+Vista.Ventana_registro ..> jm.sistemasalas_jka.SistemaSalas_JKA
+Vista.Ventana_usuario ..> jm.sistemasalas_jka.SistemaSalas_JKA
+Vista.Vista_horario ..> Control.HorarioDAO
+jm.sistemasalas_jka.SistemaSalas_JKA ..> Consola.Ventana_Principal
+@enduml
