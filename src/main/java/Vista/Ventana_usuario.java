@@ -43,7 +43,7 @@ public class Ventana_usuario extends JFrame {
         JButton btnSalir = estilo.crearBotonMenu("Cerrar Sesión");
 
         // Eventos
-        btnInfoUsuario.addActionListener(e -> mostrarPanel(new PanelInicio()));
+        btnInfoUsuario.addActionListener(e -> mostrarPanel(new Sub_info_usuario(usuario,this)));
         btnBuscarSalas.addActionListener(e -> mostrarPanel(new Sub_buscar_sala()));
         btnMisReservas.addActionListener(e -> mostrarPanel(new Sub_mis_reservas()));
         btnGestionUbicaciones.addActionListener(e -> mostrarPanel(new Sub_gest_ubicacion()));

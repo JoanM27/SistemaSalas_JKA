@@ -9,6 +9,7 @@ import java.awt.Font;
 import java.awt.Image;
 import java.awt.Insets;
 import java.net.URL;
+import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -97,6 +98,24 @@ public class Estilo {
         panel.add(Box.createVerticalStrut(espaciado));
         return combo;
     }
+    public JComboBox<String> crearCampoSeleccionSimple_str( Color fondo, Font fuenteCombo, Dimension dimension) {
+
+        JComboBox<String> combo = new JComboBox<>();
+        combo.setBackground(fondo);
+        combo.setFont(fuenteCombo);
+        combo.setMaximumSize(dimension);
+
+        return combo;
+    }
+    public JComboBox<Integer> crearCampoSeleccionSimple_int( Color fondo, Font fuenteCombo, Dimension dimension) {
+
+        JComboBox<Integer> combo = new JComboBox<>();
+        combo.setBackground(fondo);
+        combo.setFont(fuenteCombo);
+        combo.setMaximumSize(dimension);
+
+        return combo;
+    }
 
     public JButton crearBoton(JPanel panel, String texto, Font fuente, Dimension dimension, Color fondo, Color textoColor, int espaciado) {
         JButton boton = new JButton(texto);
@@ -122,6 +141,12 @@ public class Estilo {
         return boton;
     }
     public JPanel crearPanelVertical(){
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.setBackground(colorFondoPanel);
+        return panel;
+    }
+    public JPanel crearPanelTabla(){
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setBackground(colorFondoPanel);

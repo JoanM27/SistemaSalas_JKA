@@ -21,24 +21,23 @@ public class Sub_gest_salas extends JPanel {
     public Sub_gest_salas() {
         salaDAO = new SalaDAO();
         ubicacionDAO = new UbicacionDAO();
-
         setLayout(new BorderLayout());
 
         // Panel de filtros
         JPanel panelFiltros = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        comboBloques = new JComboBox<>();
-        comboPisos = new JComboBox<>();
-        comboPisos.setBackground(estilo.colorFondoPanel);
+        ///Campos de seleccion
+        comboBloques = estilo.crearCampoSeleccionSimple_str(estilo.colorFondoPanel, estilo.fuenteTexto, null);
+        comboPisos = estilo.crearCampoSeleccionSimple_int(estilo.colorFondoPanel, estilo.fuenteTexto, null);
 
-        panelFiltros.add(new JLabel("Bloque:"));
+        panelFiltros.add(estilo.crearTextoBasico("Bloque:", estilo.fuenteSubtitulo, estilo.colorTextoBoton));
         panelFiltros.add(comboBloques);
-        panelFiltros.add(new JLabel("Piso:"));
+        panelFiltros.add(estilo.crearTextoBasico("Piso:", estilo.fuenteSubtitulo, estilo.colorTextoBoton));
         panelFiltros.add(comboPisos);
-        panelFiltros.setBackground(estilo.colorFondoPanel);
         add(panelFiltros, BorderLayout.NORTH);
 
         // Panel de contenido principal
         panelSalas = estilo.crearPanelVertical();
+        
         JScrollPane scrollPane = new JScrollPane(panelSalas);
         scrollPane.setBackground(estilo.colorFondoPanel);
         add(scrollPane, BorderLayout.CENTER);
@@ -96,12 +95,12 @@ public class Sub_gest_salas extends JPanel {
 
         for (Sala sala : salas) {
             JPanel panelItem = new JPanel(new FlowLayout(FlowLayout.LEFT));
-            panelItem.add(new JLabel("Sala: " + sala.getNombre()));
-            
-            JButton btnEditar = new JButton("Editar");
+            panelItem.add(estilo.crearTextoBasico("Sala: " + sala.getNombre(), estilo.fuenteSubtitulo, estilo.colorTextoBoton));
+
+            JButton btnEditar = estilo.crearBotonSimple("Editar", estilo.fuenteTexto,null,estilo.colorFondoBoton_A2, estilo.colorTextoBoton);
             btnEditar.addActionListener(e -> editarSala(sala));
             
-            JButton btnEliminar = new JButton("Eliminar");
+            JButton btnEliminar = estilo.crearBotonSimple("Eliminar", estilo.fuenteTexto,null,estilo.colorFondoBoton_A2, estilo.colorTextoBoton);
             btnEliminar.addActionListener(e -> eliminarSala(sala));
             
             panelItem.add(btnEditar);

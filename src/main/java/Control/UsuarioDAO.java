@@ -173,15 +173,72 @@ public class UsuarioDAO {
         return false; // Asumimos que no existe si hay error
     }
 }
-    public boolean eliminarUsuarioPorCedula(String cedula) {
+    public boolean eliminarUsuarioPorCedula(String cedula) throws SQLException {
+    // Primero obtenemos el usuario para verificar su tipo
+    Usuario usuario = obtenerUsuarioPorId(cedula);
+    if (usuario == null) {
+        return false; // El usuario no existe
+    }
+    connection.setAutoCommit(false);
+    // Si es administrador, eliminamos primero la solicitud de administración
+    if ("administrador".equalsIgnoreCase(usuario.getTipoUsuario())) {
+        Solicitud_adminDAO solicitudAdminDAO = new Solicitud_adminDAO();
+        if (!solicitudAdminDAO.eliminarSolicitudPorCedula(cedula)) {
+            System.err.println("No se pudo eliminar la solicitud de administración para el usuario: " + cedula);
+            return false;
+        }
+    }
+
+    // Procedemos con la eliminación del usuario
     String sql = "DELETE FROM usuario WHERE cedula = ?";
-    
-    try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
-        pstmt.setString(1, cedula);
-        int filasAfectadas = pstmt.executeUpdate();
+        
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, cedula);
+            int filasAfectadas = pstmt.executeUpdate();
+            
+            if (filasAfectadas > 0) {
+                connection.commit(); // Confirmamos la transacción
+                return true;
+            } else {
+                connection.rollback(); // No se eliminó ningún usuario
+                return false;
+            }
+        } catch (SQLException e) {
+            connection.rollback(); // Revertimos en caso de error
+            
+            // Manejo específico de errores
+            if (e.getErrorCode() == 2292) {
+                System.err.println("Error de integridad referencial al eliminar usuario " + cedula + 
+                                 ". Hay registros en otras tablas que dependen de este usuario.");
+                // Aquí podrías lanzar una excepción personalizada
+            }
+            
+            e.printStackTrace();
+            return false;
+        } finally {
+            try {
+                connection.setAutoCommit(true); // Restauramos auto-commit
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+     
+}
+    public boolean actualizarUsuario(Usuario usuario) {
+    String sql = "UPDATE usuario SET correo_institucional = ?, nombre = ?, apellido = ?, telefono = ?, clave = ?, tipo_usuario = ? WHERE cedula = ?";
+    try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+        stmt.setString(1, usuario.getCorreo());
+        stmt.setString(2, usuario.getNombre());
+        stmt.setString(3, usuario.getApellido());
+        stmt.setString(4, usuario.getTelefono());
+        stmt.setString(5, usuario.getPassword());
+        stmt.setString(6, usuario.getTipoUsuario());
+        stmt.setString(7, usuario.getCedula());
+
+        int filasAfectadas = stmt.executeUpdate();
         return filasAfectadas > 0;
     } catch (SQLException e) {
-        e.printStackTrace();
+        System.out.println("Error al actualizar usuario: " + e.getMessage());
         return false;
     }
 }

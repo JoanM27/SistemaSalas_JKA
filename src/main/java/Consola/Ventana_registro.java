@@ -1,7 +1,6 @@
 package Consola;
 
 import Control.UsuarioDAO;
-import Control.Autenticar;
 import Modelo.Usuario;
 import java.util.Scanner;
 
