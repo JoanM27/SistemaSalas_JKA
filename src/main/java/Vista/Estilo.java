@@ -13,13 +13,17 @@ import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
+import javax.swing.JSpinner;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
@@ -230,4 +234,29 @@ public class Estilo {
     public void limpiarPanel(JPanel panel){
         panel.removeAll();
     };
+    public void aplicarEstiloCampo(JComponent componente) {
+    componente.setFont(fuenteTexto);
+    componente.setBackground(colorFondoPanel);
+    componente.setForeground(colorTextoBoton);
+    
+    if (componente instanceof JComboBox) {
+        JComboBox<?> combo = (JComboBox<?>) componente;
+        combo.setRenderer(new DefaultListCellRenderer() {
+            @Override
+            public Component getListCellRendererComponent(JList<?> list, Object value, int index, 
+                    boolean isSelected, boolean cellHasFocus) {
+                Component c = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+                c.setBackground(isSelected ? colorFondoBoton_A2 : colorFondoPanel);
+                c.setForeground(colorTextoBoton);
+                return c;
+            }
+        });
+    } else if (componente instanceof JSpinner) {
+        JSpinner spinner = (JSpinner) componente;
+        spinner.getEditor().getComponent(0).setBackground(colorFondoPanel);
+        spinner.getEditor().getComponent(0).setForeground(colorTextoBoton);
+        spinner.getEditor().getComponent(0).setFont(fuenteTexto);
+        }
+    }
 }
+
