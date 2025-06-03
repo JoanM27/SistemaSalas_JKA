@@ -18,6 +18,7 @@ public class SalaDAO {
             e.printStackTrace();
         }
     }
+        
         // 1. Crear nueva sala
     public boolean crearSala(Sala sala) {
         String sql = "INSERT INTO sala (id, nombre, maximo_equipos, normas, id_ubicacion) VALUES (agregar_id_sala, ?, ?, ?, ?)";
