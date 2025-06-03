@@ -52,6 +52,7 @@ public class Ventana_usuario extends JFrame {
         btnSolicitudApps.addActionListener(e -> mostrarPanel(new Sub_soli_app()));
         btnReservasActivas.addActionListener(e -> mostrarPanel(new Sub_reservas_activas()));
         btnSolicitudesAdmin.addActionListener(e -> mostrarPanel(new Sub_soli_admin()));
+        //btnReportes.addActionListener(e->mostrarPanel(new Panel_Reportes))
         btnSalir.addActionListener(e -> dispose());
 
         // Organización del menú
@@ -60,12 +61,15 @@ public class Ventana_usuario extends JFrame {
         menuLateral.add(Box.createVerticalStrut(10));
 
         if ("profesor".equals(usuario.getTipoUsuario())) {
+            ///funciones de profesor
             menuLateral.add(btnBuscarSalas);
             menuLateral.add(Box.createVerticalStrut(10));
             menuLateral.add(btnMisReservas);
+            ///----
         } else if ("administrador".equals(usuario.getTipoUsuario())) {
             switch (estado_solicitud) {
                 case "aprobado" -> {
+                    //Funciones de administrador
                     menuLateral.add(btnReservasActivas);
                     menuLateral.add(Box.createVerticalStrut(10));
                     menuLateral.add(btnGestionUbicaciones);
@@ -77,6 +81,10 @@ public class Ventana_usuario extends JFrame {
                     menuLateral.add(btnSolicitudApps);
                     menuLateral.add(Box.createVerticalStrut(10));
                     menuLateral.add(btnSolicitudesAdmin);
+                    menuLateral.add(Box.createVerticalStrut(10));
+                    ///menuLateral.add(btnReportes);
+                    
+                    /////
                 }
                 case "en espera" -> JOptionPane.showMessageDialog(this, "Solicitud de admin en espera");
                 case "rechazado" -> JOptionPane.showMessageDialog(this, "Solicitud de admin rechazada");
