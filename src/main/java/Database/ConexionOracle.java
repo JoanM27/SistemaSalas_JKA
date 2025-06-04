@@ -10,7 +10,8 @@ import java.sql.SQLException;
 
 public class ConexionOracle {
     // Datos de conexión (idealmente cargados desde un archivo .properties)
-    private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";//jdbc:oracle:thin:@//192.168.254.215:1521/orcl  <--Conexion en sala de informatica
+    private static final String URL = "jdbc:oracle:thin:@//192.168.254.215:1521/orcl";//jdbc:oracle:thin:@//192.168.254.215:1521/orcl  <--Conexion en sala de informatica
+                                      //"jdbc:oracle:thin:@localhost:1521:xe"   <--Conexion Local
     private static final String USER = "sistema_salas_jka";
     private static final String PASSWORD = "sistema_salas_jka";
 
