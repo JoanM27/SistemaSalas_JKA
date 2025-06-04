@@ -13,17 +13,11 @@ public class Reserva_periodica extends Reserva {
     private String horaFin;
     private boolean quincenal;
 
-    public Reserva_periodica(String id, Usuario usuario, Sala sala, String estado, 
-                            LocalDate fechaInicio, LocalDate fechaFin, String diaSemana, 
-                            String horaInicio, String horaFin, boolean quincenal) {
+    public Reserva_periodica(String id, Usuario usuario, Sala sala, String estado) {
         super(id, usuario, sala, estado);
-        this.fechaInicio = fechaInicio;
-        this.fechaFin = fechaFin;
-        this.diaSemana = diaSemana;
-        this.horaInicio = horaInicio;
-        this.horaFin = horaFin;
-        this.quincenal = quincenal;
     }
+
+ 
 
     // Getters y Setters
     public LocalDate getFechaInicio() { return fechaInicio; }
