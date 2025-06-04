@@ -1,19 +1,20 @@
 // Reserva_periodica.java
 package Modelo;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 public class Reserva_periodica extends Reserva {
-    private String fechaInicio;
-    private String fechaFin;
+    private LocalDate fechaInicio;
+    private LocalDate fechaFin;
     private String diaSemana;
     private String horaInicio;
     private String horaFin;
     private boolean quincenal;
 
     public Reserva_periodica(String id, Usuario usuario, Sala sala, String estado, 
-                            String fechaInicio, String fechaFin, String diaSemana, 
+                            LocalDate fechaInicio, LocalDate fechaFin, String diaSemana, 
                             String horaInicio, String horaFin, boolean quincenal) {
         super(id, usuario, sala, estado);
         this.fechaInicio = fechaInicio;
@@ -25,10 +26,10 @@ public class Reserva_periodica extends Reserva {
     }
 
     // Getters y Setters
-    public String getFechaInicio() { return fechaInicio; }
-    public void setFechaInicio(String fechaInicio) { this.fechaInicio = fechaInicio; }
-    public String getFechaFin() { return fechaFin; }
-    public void setFechaFin(String fechaFin) { this.fechaFin = fechaFin; }
+    public LocalDate getFechaInicio() { return fechaInicio; }
+    public void setFechaInicio(LocalDate fechaInicio) { this.fechaInicio = fechaInicio; }
+    public LocalDate getFechaFin() { return fechaFin; }
+    public void setFechaFin(LocalDate fechaFin) { this.fechaFin = fechaFin; }
     public String getDiaSemana() { return diaSemana; }
     public void setDiaSemana(String diaSemana) { this.diaSemana = diaSemana; }
     public LocalTime getHoraInicio() { return convertirStringAHora(horaInicio); }

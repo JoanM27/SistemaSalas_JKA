@@ -15,7 +15,7 @@ import java.util.UUID;
 
 public class ReservarDAO {
     private Connection connection;
-    /*
+    
     public ReservarDAO() {
         try {
             connection = ConexionOracle.getConnection();
@@ -153,9 +153,83 @@ public class ReservarDAO {
     }
 
     // Método para verificar disponibilidad (karol)
-    private boolean verificarDisponibilidad(String idSala, LocalDate fecha, LocalTime horaInicio, LocalTime horaFin) {
-        // Lógica de verificación contra la base de datos(karol)
+    private boolean verificarDisponibilidad(String idSala, LocalDate fecha, LocalTime horaInicio, LocalTime horaFin, boolean dia_quincenal) {
+        //Agregar la logicca acá
         return true;
     }
-*/
+    
+    private boolean verificarDisponibilidadPorHora(String idSala, LocalDate fecha, LocalTime horaInicio, LocalTime horaFin) {
+        String sql = "SELECT 1 FROM reserva_por_hora "
+                   + "WHERE id_sala = ? "
+                   + "AND fecha = ? "
+                   + "AND estado = 'ACTIVA' "
+                   + "AND ((hora_inicio < ? AND hora_fin > ?) OR "
+                   + "     (hora_inicio < ? AND hora_fin > ?) OR "
+                   + "     (hora_inicio >= ? AND hora_fin <= ?))";
+
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            Timestamp inicio = Timestamp.valueOf(fecha.atTime(horaInicio));
+            Timestamp fin = Timestamp.valueOf(fecha.atTime(horaFin));
+
+            pstmt.setString(1, idSala);
+            pstmt.setDate(2, Date.valueOf(fecha));
+            pstmt.setTimestamp(3, fin);
+            pstmt.setTimestamp(4, inicio);
+            pstmt.setTimestamp(5, fin);
+            pstmt.setTimestamp(6, inicio);
+            pstmt.setTimestamp(7, inicio);
+            pstmt.setTimestamp(8, fin);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                return !rs.next(); // Disponible si no hay resultados
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    private boolean verificarDisponibilidadPeriodica(String idSala, LocalDate fecha, LocalTime horaInicio, LocalTime horaFin, boolean dia_quincenal) {
+        String diaSemana = convertirDiaSemana(fecha.getDayOfWeek());
+        int segundosInicio = horaInicio.toSecondOfDay();
+        int segundosFin = horaFin.toSecondOfDay();
+
+        String sql = "SELECT 1 FROM reserva_por_periodo "
+                   + "WHERE id_sala = ? "
+                   + "AND ? BETWEEN fecha_inicio AND fecha_fin "
+                   + "AND dia_semana = ? "
+                   + "AND (quincenal = 0 OR (quincenal = 1 AND MOD(TRUNC(?) - TRUNC(fecha_inicio), 14) = 0)) "
+                   + "AND TO_NUMBER(TO_CHAR(hora_inicio, 'SSSSS')) < ? "
+                   + "AND TO_NUMBER(TO_CHAR(hora_fin, 'SSSSS')) > ?";
+
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, idSala);
+            pstmt.setDate(2, Date.valueOf(fecha));
+            pstmt.setString(3, diaSemana);
+            pstmt.setDate(4, Date.valueOf(fecha));
+            pstmt.setInt(5, segundosFin);
+            pstmt.setInt(6, segundosInicio);
+
+            try (ResultSet rs = pstmt.executeQuery()) {
+                return !rs.next(); // Disponible si no hay resultados
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    private String convertirDiaSemana(DayOfWeek dia) {
+        switch (dia) {
+            case MONDAY:    return "LUNES";
+            case TUESDAY:   return "MARTES";
+            case WEDNESDAY: return "MIERCOLES";
+            case THURSDAY:  return "JUEVES";
+            case FRIDAY:    return "VIERNES";
+            case SATURDAY:  return "SABADO";
+            case SUNDAY:    return "DOMINGO";
+            default:        throw new IllegalArgumentException("Día inválido");
+        }
+    }
 }
+
