@@ -40,6 +40,7 @@ public class Ventana_usuario extends JFrame {
         JButton btnSolicitudApps = estilo.crearBotonMenu("Solicitudes de instalación");
         JButton btnReservasActivas = estilo.crearBotonMenu("Reservas Activas");
         JButton btnSolicitudesAdmin = estilo.crearBotonMenu("Solicitudes de administrador");
+        JButton btnInformes = estilo.crearBotonMenu("Creacion de informes");
         JButton btnSalir = estilo.crearBotonMenu("Cerrar Sesión");
 
         // Eventos
@@ -52,7 +53,7 @@ public class Ventana_usuario extends JFrame {
         btnSolicitudApps.addActionListener(e -> mostrarPanel(new Sub_soli_app()));
         btnReservasActivas.addActionListener(e -> mostrarPanel(new Sub_reservas_activas()));
         btnSolicitudesAdmin.addActionListener(e -> mostrarPanel(new Sub_soli_admin()));
-        //btnReportes.addActionListener(e->mostrarPanel(new Panel_Reportes))
+        btnInformes.addActionListener(e->mostrarPanel(new Panel_Informes()));
         btnSalir.addActionListener(e -> dispose());
 
         // Organización del menú
@@ -82,7 +83,7 @@ public class Ventana_usuario extends JFrame {
                     menuLateral.add(Box.createVerticalStrut(10));
                     menuLateral.add(btnSolicitudesAdmin);
                     menuLateral.add(Box.createVerticalStrut(10));
-                    ///menuLateral.add(btnReportes);
+                    menuLateral.add(btnInformes);
                     
                     /////
                 }

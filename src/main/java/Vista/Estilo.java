@@ -47,7 +47,7 @@ public class Estilo {
     
     final Font fuenteTitulo = new Font("Verdana", Font.BOLD, 30);
     final Font fuenteTituloGrande= new Font("Verdana", Font.BOLD, 46);
-    final Font fuenteSubtitulo = new Font("Verdana", Font.BOLD, 16);
+    final Font fuenteSubtitulo = new Font("Verdana", Font.BOLD, 20);
     final Font fuenteTexto = new Font("Verdana", Font.PLAIN, 14);
     final Font fuenteTextoPequeño = new Font("Verdana", Font.PLAIN, 10);
     final Font fuenteBoton = new Font("Verdana", Font.PLAIN, 24);

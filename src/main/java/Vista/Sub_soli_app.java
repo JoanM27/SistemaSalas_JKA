@@ -1,6 +1,5 @@
 package Vista;
 
-import Control.Solicitud_aplicacionDAO;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
