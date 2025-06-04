@@ -231,5 +231,23 @@ public class ReservarDAO {
             default:        throw new IllegalArgumentException("Día inválido");
         }
     }
+    public boolean eliminarReserva(String id, boolean esPeriodica) {
+        String sql;
+        if (esPeriodica) {
+            sql = "DELETE FROM reserva_por_periodo WHERE id = ?";
+        } else {
+            sql = "DELETE FROM reserva_por_hora WHERE id = ?";
+        }
+
+        try (PreparedStatement pstmt = connection.prepareStatement(sql)) {
+            pstmt.setString(1, id);
+            int filasAfectadas = pstmt.executeUpdate();
+            return filasAfectadas > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }
 
